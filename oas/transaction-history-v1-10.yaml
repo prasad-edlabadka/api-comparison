@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: Activity Log API
+  version: 1.0.0
+paths:
+  /activity/logs:
+    get:
+      summary: Get user activity logs
+      parameters:
+        - in: query
+          name: userId
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Activity logs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        logId:
+                          type: string
+                        timestamp:
+                          type: string 

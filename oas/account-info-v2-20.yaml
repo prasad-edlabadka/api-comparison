@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: Account Lookup API
+  version: 1.0.0
+paths:
+  /lookup:
+    get:
+      summary: Lookup account
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Account lookup result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                  owner:
+                    type: string 

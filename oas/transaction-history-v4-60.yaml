@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: Transaction History API
+  version: 1.0.0
+paths:
+  /account/transactions:
+    post:
+      summary: Get transaction history
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+                fromDate:
+                  type: string
+                toDate:
+                  type: string
+              required:
+                - accountId
+      responses:
+        '200':
+          description: Transaction history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        transactionId:
+                          type: string
+                        date:
+                          type: string
+                        amount:
+                          type: number
+                        type:
+                          type: string 

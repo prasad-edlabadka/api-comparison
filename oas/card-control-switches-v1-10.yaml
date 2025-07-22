@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Device Settings API
+  version: 1.0.0
+paths:
+  /device/settings:
+    put:
+      summary: Update device settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                setting:
+                  type: string
+                value:
+                  type: boolean
+              required:
+                - deviceId
+                - setting
+                - value
+      responses:
+        '200':
+          description: Settings updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string 

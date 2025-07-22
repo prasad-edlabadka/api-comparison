@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: Account Details API
+  version: 1.0.0
+paths:
+  /accounts/{accountId}:
+    get:
+      summary: Get account details
+      parameters:
+        - in: path
+          name: accountId
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                  accountName:
+                    type: string 

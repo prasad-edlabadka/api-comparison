@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: Card Summary API
+  version: 1.0.0
+paths:
+  /summary/cards:
+    get:
+      summary: Get summary of cards for a customer
+      parameters:
+        - in: query
+          name: customer
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Card summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cards:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cardId:
+                          type: string
+                        type:
+                          type: string 

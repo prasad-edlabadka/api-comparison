@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Credit Card Gateway API
+  version: 1.0.0
+paths:
+  /cards/listall:
+    post:
+      summary: List all credit cards for a customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+              required:
+                - customerId
+      responses:
+        '200':
+          description: Credit card list response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cards:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cardNumber:
+                          type: string
+                        cardType:
+                          type: string
+                        expiryDate:
+                          type: string
+                        issuer:
+                          type: string 

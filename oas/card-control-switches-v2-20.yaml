@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Card Feature API
+  version: 1.0.0
+paths:
+  /card/feature:
+    patch:
+      summary: Toggle card feature
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card:
+                  type: string
+                feature:
+                  type: string
+                enabled:
+                  type: boolean
+              required:
+                - card
+                - feature
+                - enabled
+      responses:
+        '200':
+          description: Feature toggled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string 

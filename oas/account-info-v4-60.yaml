@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: Account Information API
+  version: 1.0.0
+paths:
+  /account/info:
+    post:
+      summary: Retrieve account information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+              required:
+                - accountId
+      responses:
+        '200':
+          description: Account information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                  accountName:
+                    type: string
+                  balance:
+                    type: number 
