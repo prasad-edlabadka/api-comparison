@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import type { GridColDef, GridCellParams } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import { InterfaceMatch, MatchClassification } from '../types/InterfaceMatch';
 import { Box, TextField, MenuItem, Select, InputLabel, FormControl, useTheme } from '@mui/material';
 
@@ -38,7 +39,18 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
     { field: 'oasFilename', headerName: 'OAS Filename', flex: 1, sortable: true },
     { field: 'oasSummary', headerName: 'OAS Summary', flex: 2, sortable: false },
     { field: 'matchClassification', headerName: 'Match Classification', flex: 1, sortable: true },
-    { field: 'matchPercentage', headerName: 'Match %', flex: 0.5, type: 'number', sortable: true },
+    {
+      field: 'matchPercentage',
+      headerName: 'Match %',
+      flex: 0.5,
+      type: 'number',
+      sortable: true,
+      cellClassName: (params: GridCellParams) => {
+        if (typeof params.value === 'number' && params.value > 90) return 'match-percentage-high';
+        if (typeof params.value === 'number' && params.value > 75) return 'match-percentage-medium';
+        return '';
+      },
+    },
   ];
 
   return (
@@ -65,6 +77,20 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           </Select>
         </FormControl>
       </Box>
+      <style>{`
+        .MuiDataGrid-cell.match-percentage-high {
+          background-color: ${theme.palette.mode === 'dark' ? '#388e3c' : '#c8e6c9'} !important;
+          color: ${theme.palette.mode === 'dark' ? '#fff' : '#1b5e20'} !important;
+          border-radius: 4px;
+          padding: 2px 8px;
+        }
+        .MuiDataGrid-cell.match-percentage-medium {
+          background-color: ${theme.palette.mode === 'dark' ? '#ffb300' : '#ffe082'} !important;
+          color: ${theme.palette.mode === 'dark' ? '#212121' : '#ff6f00'} !important;
+          border-radius: 4px;
+          padding: 2px 8px;
+        }
+      `}</style>
       <DataGrid
         rows={filteredData.map((row, idx) => ({ id: row._id || idx, ...row }))}
         columns={columns}
