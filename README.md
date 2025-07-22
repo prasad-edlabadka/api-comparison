@@ -16,7 +16,7 @@ This project provides a full-stack solution for comparing legacy Java 8 service 
 - `oas/` — OpenAPI YAML specs (multiple versions per service)
 - `compare-mts-api/` — Java app to compare interfaces and OAS using GenAI
 - `interface-match-viewer-api/` — Spring Boot REST API for results
-- `interface-match-viewer/` — React web frontend (Barclays theme)
+- `interface-match-viewer/` — React web frontend
 - `interface-match-expo/` — Expo/React Native mobile frontend
 
 ---
@@ -97,7 +97,7 @@ npm run web # or npm start for Expo Go
 - **OAS specs** are versioned to allow similarity analytics.
 - **compare-mts-api** orchestrates interface-vs-OAS comparison using GenAI and stores results in MongoDB.
 - **interface-match-viewer-api** exposes results as a REST API.
-- **Web and mobile frontends** fetch and visualize results, styled with Barclays branding.
+- **Web and mobile frontends** fetch and visualize results.
 
 ---
 

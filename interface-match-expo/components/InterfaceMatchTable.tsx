@@ -19,7 +19,7 @@ const columns = [
   { key: 'javaInterfaceName', label: 'Java Interface Name', sortable: true },
   { key: 'javaClassSummary', label: 'Java Class Summary', sortable: false },
   { key: 'oasFilename', label: 'OAS Filename', sortable: true },
-  { key: 'oasSummary', label: 'OAS Summary', sortable: false },
+  { key: 'explanation', label: 'Explanation', sortable: false },
   { key: 'matchClassification', label: 'Match Classification', sortable: true },
   { key: 'matchPercentage', label: 'Match %', sortable: true },
 ];
@@ -40,7 +40,7 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
         row.javaInterfaceName.toLowerCase().includes(search.toLowerCase()) ||
         row.javaClassSummary.toLowerCase().includes(search.toLowerCase()) ||
         row.oasFilename.toLowerCase().includes(search.toLowerCase()) ||
-        row.oasSummary.toLowerCase().includes(search.toLowerCase());
+        row.explanation.toLowerCase().includes(search.toLowerCase());
       const matchesFilter = filter ? row.matchClassification === filter : true;
       return matchesSearch && matchesFilter;
     });
@@ -116,8 +116,32 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
     const [webPage, setWebPage] = useState(0);
     const [webPageSize, setWebPageSize] = useState(rowsPerPage);
     const muiColumns = [
-      { field: 'javaClassFilename', headerName: 'Java Class Filename', flex: 1, sortable: true },
-      { field: 'javaInterfaceName', headerName: 'Java Interface Name', flex: 1, sortable: true },
+      {
+        field: 'javaClassFilename',
+        headerName: 'Java Class Filename',
+        flex: 1,
+        sortable: true,
+        minWidth: 120,
+        maxWidth: 260,
+        renderCell: (params: any) => (
+          <div style={{ whiteSpace: 'normal', wordBreak: 'break-all', maxWidth: 240, lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center', fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', fontSize: '10pt' }}>
+            {params.value}
+          </div>
+        ),
+      },
+      {
+        field: 'javaInterfaceName',
+        headerName: 'Java Interface Name',
+        flex: 1,
+        sortable: true,
+        minWidth: 120,
+        maxWidth: 220,
+        renderCell: (params: any) => (
+          <div style={{ whiteSpace: 'normal', wordBreak: 'break-all', maxWidth: 200, lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center', fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', fontSize: '10pt' }}>
+            {params.value}
+          </div>
+        ),
+      },
       {
         field: 'javaClassSummary',
         headerName: 'Java Class Summary',
@@ -125,20 +149,20 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
         sortable: false,
         minWidth: 200,
         renderCell: (params: any) => (
-          <div style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center' }}>
+          <div style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center', fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', fontSize: '10pt' }}>
             {params.value}
           </div>
         ),
       },
       { field: 'oasFilename', headerName: 'OAS Filename', flex: 1, sortable: true },
       {
-        field: 'oasSummary',
-        headerName: 'OAS Summary',
+        field: 'explanation',
+        headerName: 'Explanation',
         flex: 2,
         sortable: false,
         minWidth: 200,
         renderCell: (params: any) => (
-          <div style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center' }}>
+          <div style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center', fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', fontSize: '10pt' }}>
             {params.value}
           </div>
         ),
@@ -194,13 +218,13 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           page={webPage}
           onPageChange={setWebPage}
           rowsPerPageOptions={[10, 20, 50]}
-          style={{ minWidth: 900, height: 600, fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', background: theme.dark ? '#0A2239' : '#fff', color: theme.dark ? '#fff' : '#222' }}
+          style={{ minWidth: 900, height: 600, fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', fontSize: '10pt', background: theme.dark ? '#0A2239' : '#fff', color: theme.dark ? '#fff' : '#222' }}
           disableRowSelectionOnClick
           getRowHeight={() => 'auto'}
         />
         <div style={{ height: 60, overflowY: 'auto', fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', marginTop: 8 }}>
           <span style={{ fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif' }}>
-            You can search, filter, and sort by clicking on the column headers. If this message is long enough, it should scroll vertically. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam eros, eget luctus quam orci in velit.
+            You can search, filter, and sort by clicking on the column headers.
           </span>
         </div>
       </div>
@@ -231,8 +255,7 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
             <Text style={{ fontSize: 18, fontWeight: '700', marginBottom: 4, fontFamily: 'Effra' }}>{row.javaInterfaceName}</Text>
             <Text style={{ fontFamily: 'Effra' }}>Java Class Filename: {row.javaClassFilename}</Text>
             <Text style={{ fontFamily: 'Effra' }}>Java Class Summary: {row.javaClassSummary}</Text>
-            <Text style={{ fontFamily: 'Effra' }}>OAS Filename: {row.oasFilename}</Text>
-            <Text style={{ fontFamily: 'Effra' }}>OAS Summary: {row.oasSummary}</Text>
+            <Text style={{ fontFamily: 'Effra' }}>Explanation: {row.explanation}</Text>
             <Text style={{ fontFamily: 'Effra' }}>Match Classification: {row.matchClassification}</Text>
             <Text style={getMatchCellStyle(row.matchPercentage) as any}>
               Match %: {row.matchPercentage}

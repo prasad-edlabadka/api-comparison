@@ -7,6 +7,7 @@ export interface InterfaceMatch {
   javaClassSummary: string;
   oasFilename: string;
   oasSummary: string;
+  explanation: string;
   matchClassification: MatchClassification;
   matchPercentage: number; // 0-100
 } 

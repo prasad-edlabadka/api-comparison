@@ -14,6 +14,7 @@ public class InterfaceMatch {
     private String oasSummary;
     private String matchClassification;
     private int matchPercentage;
+    private String explanation;
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
@@ -31,4 +32,6 @@ public class InterfaceMatch {
     public void setMatchClassification(String matchClassification) { this.matchClassification = matchClassification; }
     public int getMatchPercentage() { return matchPercentage; }
     public void setMatchPercentage(int matchPercentage) { this.matchPercentage = matchPercentage; }
+    public String getExplanation() { return explanation; }
+    public void setExplanation(String explanation) { this.explanation = explanation; }
 } 
