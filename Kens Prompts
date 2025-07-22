@@ -1,0 +1,14 @@
+i want to create an example interface specification that can be used to describe a mongo db strucutre, that is ussed by a react app to retrieve resutls that has the following data types:
+- java class filename
+- java interface name
+- java class summary description
+- matching oas filename
+- oas file summary description
+- classifcation of the match, from a list of values; fully matched, partial match, no match
+- percentage match
+
+using this interface file i want to create a react web application that access the results from the database in a meaningful way. The user should be able to search the results using any of the fields, including filtering of the match classifications. the use should be able to sort the data by clicking on the headings of the filtered results. i want the user interface to be appelaing to developers, with a dark and light mode.
+
+can you generate 100 rows of test data that can be used to play with the user interface, until the other part of the app which will load the data is ready
+
+we are creating an application in 2 parts, one part is comparing interfaces in a legacy monolitic java applications to microservice based OAS APIs looking for potential matches. the results of processing the comaprison of the java interfaces and the OAS files with the results of the matching with a status: fully matched, partial overlap, no match. we want to highlight the OAS interface file with the highest possible overlap for each java interface. The results of the matching process will be stored in a Mongo database. I want a react project that will have a web browser interface that lists all of the java interfaces, that has 
