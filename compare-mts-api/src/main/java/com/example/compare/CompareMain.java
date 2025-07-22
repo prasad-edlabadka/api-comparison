@@ -26,7 +26,7 @@ public class CompareMain {
         List<ServiceGatewaySignature> gateways = new ArrayList<>();
         for (String[] svc : SERVICES) {
             String service = svc[0];
-            String ifacePath = "../" + svc[0] + "/src/main/java/" + svc[1];
+            String ifacePath = "../mts/" + svc[0] + "/src/main/java/" + svc[1];
             String src = Files.readString(new File(ifacePath).toPath());
             String methodSig = src.lines().filter(l -> l.trim().endsWith(")") && l.contains("(")).findFirst().orElse("");
             String ifaceName = svc[1].substring(svc[1].lastIndexOf("/")+1, svc[1].length()-5);
@@ -42,7 +42,7 @@ public class CompareMain {
         for (ServiceGatewaySignature gw : gateways) {
             for (OasSpec oas : oasSpecs) {
                 Map<String,Object> doc = new HashMap<>();
-                doc.put("javaClassFilename", gw.serviceName + "/src/main/java/" + gw.serviceName.replace("-","") + "/egs/" + gw.interfaceName + ".java");
+                doc.put("javaClassFilename", "mts/" + gw.serviceName + "/src/main/java/" + gw.serviceName.replace("-","") + "/egs/" + gw.interfaceName + ".java");
                 doc.put("javaInterfaceName", gw.interfaceName);
                 doc.put("javaClassSummary", gw.fullSource.substring(0, Math.min(gw.fullSource.length(), 200)));
                 doc.put("oasFilename", oas.filename);
