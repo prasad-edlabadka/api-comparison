@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { View } from 'react-native';
+import React, { useMemo, useState, useEffect } from 'react';
+import { View, ActivityIndicator, Text } from 'react-native';
 import { InterfaceMatchTable } from './InterfaceMatchTable';
 import { InterfaceMatch, MatchClassification } from '../types/InterfaceMatch';
 
@@ -63,10 +63,33 @@ function generateTestData(count: number): InterfaceMatch[] {
 }
 
 export default function InterfaceMatchScreen() {
-  const testData = useMemo(() => generateTestData(100), []);
+  const [data, setData] = useState<InterfaceMatch[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch('http://localhost:8080/api/matches')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch data');
+        return res.json();
+      })
+      .then(setData)
+      .catch(e => {
+        setError(e.message);
+        setData(generateTestData(100));
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
-      <InterfaceMatchTable data={testData} />
+      {loading ? (
+        <ActivityIndicator size="large" style={{ marginTop: 40 }} />
+      ) : error ? (
+        <Text style={{ color: 'red', margin: 16 }}>Error: {error}</Text>
+      ) : null}
+      {data && <InterfaceMatchTable data={data} />}
     </View>
   );
 }
