@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { View, ScrollView, Platform } from 'react-native';
-import { TextInput, Button, useTheme, HelperText, Card, Text } from 'react-native-paper';
+import { ScrollView, Platform } from 'react-native';
+import { TextInput, Button, useTheme, HelperText, Card } from 'react-native-paper';
+import { View, Text } from './Themed';
 import type { InterfaceMatch, MatchClassification } from '../types/InterfaceMatch';
 
 interface Props {
@@ -69,6 +70,7 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           borderRadius: 4,
           padding: '2px 8px',
           textAlign: 'center' as const,
+          fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif',
         };
       } else {
         return {
@@ -77,7 +79,7 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           borderRadius: 4,
           paddingHorizontal: 8,
           paddingVertical: 2,
-          textAlign: 'center' as const,
+          fontFamily: 'Effra',
         };
       }
     }
@@ -89,6 +91,7 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           borderRadius: 4,
           padding: '2px 8px',
           textAlign: 'center' as const,
+          fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif',
         };
       } else {
         return {
@@ -97,11 +100,15 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           borderRadius: 4,
           paddingHorizontal: 8,
           paddingVertical: 2,
-          textAlign: 'center' as const,
+          fontFamily: 'Effra',
         };
       }
     }
-    return isWeb ? {} : {};
+    if (isWeb) {
+      return { fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif' };
+    } else {
+      return { fontFamily: 'Effra' };
+    }
   };
 
   if (Platform.OS === 'web') {
@@ -149,7 +156,17 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
       },
     ];
     return (
-      <div style={{ width: '100%', padding: 8, overflowX: 'auto', minWidth: 900 }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '100vw',
+        padding: 24,
+        boxSizing: 'border-box',
+        overflowX: 'auto',
+        minWidth: 900,
+        fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif',
+        background: theme.dark ? '#0A2239' : '#fff',
+        color: theme.dark ? '#fff' : '#222'
+      }}>
         <input
           type="text"
           placeholder="Search"
@@ -177,17 +194,22 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           page={webPage}
           onPageChange={setWebPage}
           rowsPerPageOptions={[10, 20, 50]}
-          style={{ minWidth: 900, height: 600 }}
+          style={{ minWidth: 900, height: 600, fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', background: theme.dark ? '#0A2239' : '#fff', color: theme.dark ? '#fff' : '#222' }}
           disableRowSelectionOnClick
           getRowHeight={() => 'auto'}
         />
+        <div style={{ height: 60, overflowY: 'auto', fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif', marginTop: 8 }}>
+          <span style={{ fontFamily: 'Effra, Arial, Helvetica Neue, sans-serif' }}>
+            You can search, filter, and sort by clicking on the column headers. If this message is long enough, it should scroll vertically. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam eros, eget luctus quam orci in velit.
+          </span>
+        </div>
       </div>
     );
   }
 
   // Mobile: Card layout
   return (
-    <ScrollView style={{ flex: 1, padding: 8 }}>
+    <ScrollView style={{ flex: 1, padding: 16 }}>
       <TextInput
         label="Search"
         value={search}
@@ -206,20 +228,24 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
       {pagedData.map((row, idx) => (
         <Card key={row._id || idx} style={{ marginBottom: 12 }}>
           <Card.Content>
-            <Text variant="titleMedium" style={{ marginBottom: 4 }}>{row.javaInterfaceName}</Text>
-            <Text>Java Class Filename: {row.javaClassFilename}</Text>
-            <Text>Java Class Summary: {row.javaClassSummary}</Text>
-            <Text>OAS Filename: {row.oasFilename}</Text>
-            <Text>OAS Summary: {row.oasSummary}</Text>
-            <Text>Match Classification: {row.matchClassification}</Text>
+            <Text style={{ fontSize: 18, fontWeight: '700', marginBottom: 4, fontFamily: 'Effra' }}>{row.javaInterfaceName}</Text>
+            <Text style={{ fontFamily: 'Effra' }}>Java Class Filename: {row.javaClassFilename}</Text>
+            <Text style={{ fontFamily: 'Effra' }}>Java Class Summary: {row.javaClassSummary}</Text>
+            <Text style={{ fontFamily: 'Effra' }}>OAS Filename: {row.oasFilename}</Text>
+            <Text style={{ fontFamily: 'Effra' }}>OAS Summary: {row.oasSummary}</Text>
+            <Text style={{ fontFamily: 'Effra' }}>Match Classification: {row.matchClassification}</Text>
             <Text style={getMatchCellStyle(row.matchPercentage) as any}>
               Match %: {row.matchPercentage}
             </Text>
           </Card.Content>
         </Card>
       ))}
-      <HelperText type="info">
-        You can search, filter, and sort by clicking on the column headers.
+      <HelperText type="info" style={{ fontFamily: 'Effra', maxHeight: 60 }}>
+        <ScrollView style={{ maxHeight: 60 }}>
+          <Text style={{ fontFamily: 'Effra' }}>
+            You can search, filter, and sort by clicking on the column headers.
+          </Text>
+        </ScrollView>
       </HelperText>
     </ScrollView>
   );

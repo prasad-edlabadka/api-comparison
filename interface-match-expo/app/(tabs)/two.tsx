@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, ScrollView } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 
 export default function InformationScreen() {
@@ -14,8 +14,9 @@ export default function InformationScreen() {
       <Text variant="titleLarge" style={{ fontWeight: 'bold', marginBottom: 16, textAlign: 'center' }}>
         What does this app do?
       </Text>
-      <Text style={{ fontSize: 18, textAlign: 'center', lineHeight: 28 }}>
-        {`
+      <ScrollView style={{ flex: 1, width: '100%' }} showsVerticalScrollIndicator={true}>
+        <Text style={{ fontSize: 18, textAlign: 'center', lineHeight: 28, fontFamily: 'Effra' }}>
+          {`
 In legacy code, where Java reigns,
 Interfaces old, with complex chains.
 But modern times demand a shift,
@@ -35,8 +36,9 @@ So browse the list, explore the score,
 See what APIs have in store.
 For every match, a chance to see
 How modern services set you free!
-        `}
-      </Text>
+          `}
+        </Text>
+      </ScrollView>
     </View>
   );
 }

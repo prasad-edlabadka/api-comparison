@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import { ActivityIndicator } from 'react-native';
+import { View, Text } from './Themed';
 import { InterfaceMatchTable } from './InterfaceMatchTable';
 import { InterfaceMatch, MatchClassification } from '../types/InterfaceMatch';
 
@@ -87,7 +88,7 @@ export default function InterfaceMatchScreen() {
       {loading ? (
         <ActivityIndicator size="large" style={{ marginTop: 40 }} />
       ) : error ? (
-        <Text style={{ color: 'red', margin: 16 }}>Error: {error}</Text>
+        <Text style={{ color: 'red', margin: 16, fontFamily: 'Effra' }}>Error: {error}</Text>
       ) : null}
       {data && <InterfaceMatchTable data={data} />}
     </View>
