@@ -111,9 +111,31 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
     const muiColumns = [
       { field: 'javaClassFilename', headerName: 'Java Class Filename', flex: 1, sortable: true },
       { field: 'javaInterfaceName', headerName: 'Java Interface Name', flex: 1, sortable: true },
-      { field: 'javaClassSummary', headerName: 'Java Class Summary', flex: 2, sortable: false },
+      {
+        field: 'javaClassSummary',
+        headerName: 'Java Class Summary',
+        flex: 2,
+        sortable: false,
+        minWidth: 200,
+        renderCell: (params: any) => (
+          <div style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center' }}>
+            {params.value}
+          </div>
+        ),
+      },
       { field: 'oasFilename', headerName: 'OAS Filename', flex: 1, sortable: true },
-      { field: 'oasSummary', headerName: 'OAS Summary', flex: 2, sortable: false },
+      {
+        field: 'oasSummary',
+        headerName: 'OAS Summary',
+        flex: 2,
+        sortable: false,
+        minWidth: 200,
+        renderCell: (params: any) => (
+          <div style={{ whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.4, height: '100%', display: 'flex', alignItems: 'center' }}>
+            {params.value}
+          </div>
+        ),
+      },
       { field: 'matchClassification', headerName: 'Match Classification', flex: 1, sortable: true },
       {
         field: 'matchPercentage',
@@ -157,6 +179,7 @@ export const InterfaceMatchTable: React.FC<Props> = ({ data }) => {
           rowsPerPageOptions={[10, 20, 50]}
           style={{ minWidth: 900, height: 600 }}
           disableRowSelectionOnClick
+          getRowHeight={() => 'auto'}
         />
       </div>
     );
