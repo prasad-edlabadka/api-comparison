@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Account Gateway API
+  version: 1.0.0
+paths:
+  /account/information:
+    post:
+      summary: Get account information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+              required:
+                - accountId
+      responses:
+        '200':
+          description: Account information response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                  accountName:
+                    type: string
+                  balance:
+                    type: number
+                  currency:
+                    type: string 

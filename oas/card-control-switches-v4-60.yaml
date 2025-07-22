@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Card Control Switches API
+  version: 1.0.0
+paths:
+  /card/switches/update:
+    post:
+      summary: Update card control switches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cardNumber:
+                  type: string
+                switchType:
+                  type: string
+                enabled:
+                  type: boolean
+              required:
+                - cardNumber
+                - switchType
+                - enabled
+      responses:
+        '200':
+          description: Card control switches updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string 

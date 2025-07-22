@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Payment Transfer API
+  version: 1.0.0
+paths:
+  /transfer:
+    post:
+      summary: Initiate a money transfer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payer:
+                  type: string
+                payee:
+                  type: string
+                value:
+                  type: number
+              required:
+                - payer
+                - payee
+                - value
+      responses:
+        '200':
+          description: Transfer result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  confirmation:
+                    type: string
+                  result:
+                    type: string 

@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Payments Gateway API
+  version: 1.0.0
+paths:
+  /payments/process:
+    post:
+      summary: Process a payment request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fromAccountId:
+                  type: string
+                toAccountId:
+                  type: string
+                amount:
+                  type: number
+              required:
+                - fromAccountId
+                - toAccountId
+                - amount
+      responses:
+        '200':
+          description: Payment processed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  reference:
+                    type: string 

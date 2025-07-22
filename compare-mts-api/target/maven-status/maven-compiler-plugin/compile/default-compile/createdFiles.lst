@@ -1,0 +1,6 @@
+com/example/compare/GenAIClient.class
+com/example/compare/MongoResultWriter.class
+com/example/compare/ServiceGatewaySignature.class
+com/example/compare/GenAIClient$GenAIResult.class
+com/example/compare/CompareMain.class
+com/example/compare/OasSpec.class

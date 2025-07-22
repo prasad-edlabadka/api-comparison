@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: User Profile API
+  version: 1.0.0
+paths:
+  /profile:
+    get:
+      summary: Get user profile
+      parameters:
+        - in: query
+          name: user
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  email:
+                    type: string 

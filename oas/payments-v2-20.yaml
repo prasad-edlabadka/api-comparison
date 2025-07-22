@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Simple Payment API
+  version: 1.0.0
+paths:
+  /pay:
+    post:
+      summary: Make a payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payerId:
+                  type: string
+                recipientId:
+                  type: string
+                amount:
+                  type: number
+              required:
+                - payerId
+                - recipientId
+                - amount
+      responses:
+        '200':
+          description: Payment result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  paymentId:
+                    type: string
+                  status:
+                    type: string 
