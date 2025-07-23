@@ -38,7 +38,7 @@ public class GenAIClient {
         String prompt = buildPrompt(interfaceSource, oasYaml);
         System.out.println("[GenAI] Prompt:\n" + prompt.substring(0, Math.min(prompt.length(), 1000)) + (prompt.length() > 1000 ? "... [truncated]" : ""));
         // Only send the current prompt as a single user message, no prior context or system message
-        String requestBody = "{\"model\":\"microsoft/phi-4-mini-reasoning\",\"stream\":false,\"messages\":[{\"role\":\"user\",\"content\":\""
+        String requestBody = "{\"model\":\"mistralai/codestral-22b-v0.1\",\"stream\":false,\"messages\":[{\"role\":\"user\",\"content\":\""
                 + prompt.replace("\"", "\\\"").replace("\n", "\\n") + "\"}]}";
         System.out.println("[GenAI] Sending request to " + ENDPOINT);
         Request request = new Request.Builder()

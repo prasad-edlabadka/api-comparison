@@ -78,7 +78,6 @@ const barclaysPaperDark = {
 function BarclaysHeader() {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: barclaysDarkPaper, padding: 16}}>
-      <Image source={require('../assets/images/barclays-logo.png')} style={{ width: 120, height: 40, marginRight: 20 }} resizeMode="contain" />
       <Text style={{ color: '#fff', fontSize: 24, fontWeight: '700', fontFamily: 'Effra' }}>Interface Match Results</Text>
     </View>
   );
